@@ -8,7 +8,7 @@ CREATE TABLE roles (
 );
 
 INSERT INTO roles (role) VALUES
-('ADMIN_ROLE'),
+('ADMIN_ROLE'), 
 ('OPERATOR_ROLE'),
 ('SECURITY_ROLE'),
 ('CITIZEN_ROLE'),
@@ -27,7 +27,7 @@ CREATE TABLE users (
     email VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     address VARCHAR(40) NOT NULL,
-    id_rol INT,
+    role_id INT,
     CONSTRAINT fk_role_user
     FOREIGN KEY (role_id)
     REFERENCES roles(id)
