@@ -11,7 +11,7 @@ import { dbConnection, db } from './mysql.js';
 import authRoutes from '../src/auth/auth-routes.js';
 import userRoutes from '../src/user/user-routes.js';
 import vehicleRoutes from '../src/vehicle/vehicle-routes.js';
-import trafficLightRoutes from '../src/trafficLight/trafficLight-routes.js';
+import trafficLightRoutes from '../src/trafficLight/trafficlight-routes.js';
 import eventRoutes from '../src/event/event-routes.js';
 import evidenceRoutes from '../src/evidence/evidence-routes.js';
 

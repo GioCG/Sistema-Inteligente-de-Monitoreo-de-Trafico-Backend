@@ -1,12 +1,12 @@
 import { Router } from "express";
 import {
     listEvidence,
-    createEvidence
+    createEvidences
 } from "./evidence-controller.js";
 
 const router = Router();
 
 router.get("/", listEvidence);
-router.post("/", createEvidence);
+router.post("/", createEvidences);
 
 export default router;

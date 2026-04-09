@@ -18,8 +18,7 @@ const router = Router();
 router.post(
     '/login',
     [
-        loginValidator,
-        deleteFileOnError
+        loginValidator
     ],
     login
 );
@@ -27,8 +26,7 @@ router.post(
 router.post(
     '/register',
     [
-        registerUserValidator,
-        deleteFileOnError
+        registerUserValidator
     ],
     registerUser
 );

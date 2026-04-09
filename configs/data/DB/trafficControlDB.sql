@@ -1,4 +1,3 @@
-DROP DATABASE IF EXISTS trafficControlDB;
 CREATE DATABASE IF NOT EXISTS trafficControlDB;
 USE trafficControlDB;
 
@@ -27,6 +26,7 @@ CREATE TABLE users (
     email VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     address VARCHAR(40) NOT NULL,
+    estate BOOLEAN DEFAULT TRUE,
     role_id INT,
     CONSTRAINT fk_role_user
     FOREIGN KEY (role_id)
@@ -95,7 +95,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-
+ñ
 DELIMITER $$
 CREATE PROCEDURE sp_getUserByDPI(IN p_dpi BIGINT)
 BEGIN
@@ -125,7 +125,7 @@ DELIMITER $$
 CREATE PROCEDURE sp_deleteUser(IN p_dpi BIGINT)
 BEGIN
     UPDATE users
-    SET status = FALSE
+    SET estado = FALSE
     WHERE dpi = p_dpi;
 END$$
 DELIMITER ;
@@ -168,6 +168,18 @@ BEGIN
 END$$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE sp_updateTrafficLight(
+    IN p_id INT,
+    IN p_location VARCHAR(50),
+    IN p_status VARCHAR(20)
+)
+BEGIN
+    UPDATE traffic_light 
+    SET location = p_location, status = p_status 
+    WHERE id = p_id;
+END$$
+DELIMITER ;
 -- ===========================================CRUD EVENTS========================================
 -- ==============================================================================================
 DELIMITER $$

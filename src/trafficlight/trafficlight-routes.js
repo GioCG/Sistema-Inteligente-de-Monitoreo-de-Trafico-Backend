@@ -1,12 +1,12 @@
 import { Router } from "express";
 import {
     listTrafficLights,
-    createTrafficLight
+    createTrafficLights
 } from "./trafficlight-controller.js";
 
 const router = Router();
 
 router.get("/", listTrafficLights);
-router.post("/", createTrafficLight);
+router.post("/", createTrafficLights);
 
 export default router;

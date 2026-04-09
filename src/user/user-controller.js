@@ -27,7 +27,7 @@ export const listUser = async (req, res) => {
     }
 };
 
-export const getUserByDpi = async (req, res) => {
+export const getUser = async (req, res) => {
     try {
         const { dpi } = req.params;
 

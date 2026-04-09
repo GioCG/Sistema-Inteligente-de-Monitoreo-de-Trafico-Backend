@@ -1,35 +1,58 @@
-'use strict';
-import * as VehicleModel from './vehicle-model.js';
+import {
+    createVehicle,
+    getVehicles,
+    deleteVehicle
+} from './vehicle-model.js';
 
-export const createVehicle = async (req, res) => {
+export const createVehicles = async (req, res) => {
     try {
-        await VehicleModel.createVehicle(req.body);
+        const result = await createVehicle(req.body);
 
         res.status(201).json({
-            success: true,
-            msg: "Vehicle created"
+            estado: true,
+            msg: "Vehículo creado",
+            result
         });
     } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
+        res.status(500).json({ estado: false, error: error.message });
     }
 };
 
 export const listVehicles = async (req, res) => {
     try {
-        const vehicles = await VehicleModel.getVehicles();
+        const vehicles = await getVehicles();
 
-        res.json({ success: true, vehicles });
+        res.status(200).json({
+            estado: true,
+            vehicles
+        });
     } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
+        res.status(500).json({ estado: false, error: error.message });
     }
 };
 
-export const deleteVehicle = async (req, res) => {
+export const getVehicle = async (req, res) => {
     try {
-        await VehicleModel.deleteVehicle(req.params.plate);
+        const vehicle = await getVehicleByPlate(req.params.plate);
 
-        res.json({ success: true, msg: "Vehicle deleted" });
+        res.status(200).json({
+            estado: true,
+            vehicle
+        });
     } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
+        res.status(500).json({ estado: false, error: error.message });
+    }
+};
+
+export const deleteVehicles = async (req, res) => {
+    try {
+        await deleteVehicle(req.params.plate);
+
+        res.status(200).json({
+            estado: true,
+            msg: "Vehículo eliminado"
+        });
+    } catch (error) {
+        res.status(500).json({ estado: false, error: error.message });
     }
 };
