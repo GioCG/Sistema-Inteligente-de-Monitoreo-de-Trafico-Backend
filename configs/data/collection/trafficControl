@@ -172,7 +172,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"plate\": \"P125ABC\",\r\n  \"type\": \"motocicleta\",\r\n  \"color\": \"negro\",\r\n  \"dpi_user\": 2999713920101\r\n}",
+          "raw": "{\r\n  \"plate\": \"P785ABC\",\r\n  \"type\": \"car\",\r\n  \"color\": \"red\",\r\n  \"dpi_user\": 1000000000002\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -327,7 +327,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"speed\": 12,\r\n  \"date\": \"2026-04-06 10:00:00\",\r\n  \"traffic_light_status\": \"RED\",\r\n  \"traffic_light_id\": 1,\r\n  \"plate\": \"P125ABC\"\r\n}",
+          "raw": "{\r\n  \"speed\": 95,\r\n  \"date\": \"2026-04-06 10:00:00\",\r\n  \"traffic_light_status\": \"green\",\r\n  \"traffic_light_id\": 1,\r\n  \"plate\": \"P785ABC\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -369,7 +369,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/traffic-control/v1/events/",
+          "raw": "http://localhost:3000/traffic-control/v1/events",
           "protocol": "http",
           "host": [
             "localhost"
@@ -378,21 +378,23 @@
           "path": [
             "traffic-control",
             "v1",
-            "events",
-            ""
+            "events"
           ]
         }
       },
       "response": []
     },
     {
-      "name": "create-events-infraccion",
+      "name": "list-events-by-user",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
       "request": {
-        "method": "POST",
+        "method": "GET",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"speed\": 95,\r\n  \"date\": \"2026-04-06 10:00:00\",\r\n  \"traffic_light_status\": \"RED\",\r\n  \"violation\": true,\r\n  \"traffic_light_id\": 1,\r\n  \"plate\": \"P125ABC\"\r\n}",
+          "raw": "{\r\n  \"speed\": 45,\r\n  \"date\": \"2026-04-06 10:00:00\",\r\n  \"traffic_light_status\": \"GREEN\",\r\n  \"violation\": false,\r\n  \"traffic_light_id\": 1,\r\n  \"plate\": \"P123ABC\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -400,7 +402,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/traffic-control/v1/events/",
+          "raw": "http://localhost:3000/traffic-control/v1/events/1000000000002",
           "protocol": "http",
           "host": [
             "localhost"
@@ -410,6 +412,51 @@
             "traffic-control",
             "v1",
             "events",
+            "1000000000002"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create-evidence 2 o mas imagenes",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "images",
+              "type": "file",
+              "uuid": "5d3bd854-31e2-491c-b9b5-1487c35bcfac",
+              "src": "/C:/Users/Gio/Pictures/Saved Pictures/images.jpg"
+            },
+            {
+              "key": "event_id",
+              "value": "2",
+              "type": "text",
+              "uuid": "86999e25-c14a-492d-a59b-43dc30fc7296"
+            },
+            {
+              "key": "images",
+              "type": "file",
+              "uuid": "5d3bd854-31e2-491c-b9b5-1487c35bcfac",
+              "src": "/C:/Users/Gio/Pictures/Saved Pictures/MV5BNTI5OGVkYWUtMDQzOS00ZDMzLWJjNzQtNThjZWRhZmY2ODVkXkEyXkFqcGc@._V1_QL75_UY281_CR2,0,500,281_.jpg"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/evidence/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "evidence",
             ""
           ]
         }
@@ -417,18 +464,26 @@
       "response": []
     },
     {
-      "name": "create-evidence",
+      "name": "create-evidence 1 imagen",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"image_path\": \"evidence1.jpg\",\r\n  \"event_id\": 1\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "images",
+              "type": "file",
+              "uuid": "5d3bd854-31e2-491c-b9b5-1487c35bcfac",
+              "src": "postman-cloud:///1f1350dd-0520-4840-840e-77728182c94e"
+            },
+            {
+              "key": "event_id",
+              "value": "2",
+              "type": "text",
+              "uuid": "86999e25-c14a-492d-a59b-43dc30fc7296"
             }
-          }
+          ]
         },
         "url": {
           "raw": "http://localhost:3000/traffic-control/v1/evidence/",
@@ -464,6 +519,28 @@
             "v1",
             "evidence",
             ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list-evidence-by-events",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/evidence/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "evidence",
+            "4"
           ]
         }
       },

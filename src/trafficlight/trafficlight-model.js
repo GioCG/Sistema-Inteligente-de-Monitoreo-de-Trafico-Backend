@@ -15,14 +15,3 @@ export const generateTrafficLight = async (data) => {
     );
 };
 
-export const updateTrafficLight = async (id, data) => {
-    const { location, status } = data;
-    await db().query(
-        "UPDATE traffic_light SET location = ?, status = ? WHERE id = ?",
-        [location, status, id]
-    );
-};
-
-export const deleteTrafficLight = async (id) => {
-    await db().query("DELETE FROM traffic_light WHERE id = ?", [id]);
-};
