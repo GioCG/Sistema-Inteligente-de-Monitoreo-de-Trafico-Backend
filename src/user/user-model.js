@@ -39,13 +39,13 @@ export const getUsers = async () => {
 };
 
 export const updateUserDB = async (dpi, data) => {
-    const { name, username, address } = data;
+    const { username, email, address } = data;
 
     await db().query(
         `UPDATE users 
-         SET name = ?, username = ?, address = ?
+         SET username = ?, email = ?, address = ?
          WHERE dpi = ?`,
-        [name, username, address, dpi]
+        [username, email, address, dpi]
     );
 };
 
@@ -69,11 +69,48 @@ export const updatePasswordDB = async (dpi, newPassword) => {
     return result;
 };
 
-export const deleteUserDB = async (dpi) => {
-    await db().query(
-        "UPDATE users SET estado = false WHERE dpi = ?",
+export const processUserDeathDB = async (dpi) => {
+    const connection = await db().getConnection();
+    try {
+        await connection.beginTransaction();
+
+        await connection.query(
+            "UPDATE users SET estate = false WHERE dpi = ?",
+            [dpi]
+        );
+
+        await connection.query(
+            "UPDATE vehicles SET dpi_user = NULL WHERE dpi_user = ?",
+            [dpi]
+        );
+
+        await connection.commit();
+        return { success: true };
+    } catch (error) {
+        await connection.rollback();
+        throw error;
+    } finally {
+        connection.release();
+    }
+};
+
+export const getUserWithRoleName = async (dpi) => {
+    const [rows] = await db().query(
+        `SELECT u.*, r.role as role_name 
+         FROM users u 
+         INNER JOIN roles r ON u.role_id = r.id 
+         WHERE u.dpi = ?`,
         [dpi]
     );
+    return rows[0];
+};
+
+export const transferVehicleDB = async (plate, newDpi) => {
+    const [result] = await db().query(
+        "UPDATE vehicles SET dpi_user = ? WHERE plate = ?",
+        [newDpi, plate]
+    );
+    return result.affectedRows > 0;
 };
 
 export const findUser = async (email, username) => {

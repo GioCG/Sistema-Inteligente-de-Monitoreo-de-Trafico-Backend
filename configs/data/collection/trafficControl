@@ -29,13 +29,88 @@
       "response": []
     },
     {
+      "name": "update-user-password",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoyOTk5NzEzOTIwMTAxLCJyb2xlIjoxLCJpYXQiOjE3NzU3MDA4OTcsImV4cCI6MTc3NTcxNTI5N30.ORMaC20QaReNYt6L4OU4qfkJZnjBYWQSbPL2r1mPgFI",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"currentPassword\": \"admin12345\",\r\n    \"newPassword\":\"jjVuGB8u\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/users/password/2999713920101",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "users",
+            "password",
+            "2999713920101"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update-user-data",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoyOTk5NzEzOTIwMTAxLCJyb2xlIjoxLCJpYXQiOjE3NzU3MDA4OTcsImV4cCI6MTc3NTcxNTI5N30.ORMaC20QaReNYt6L4OU4qfkJZnjBYWQSbPL2r1mPgFI",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"admin12345\",\r\n    \"email\":\"admin@example.com\",\r\n    \"address\":\"system\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/users/2999713920101",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "users",
+            "2999713920101"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "login",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n\"email\": \"juan@mail.com\",\r\n\"password\": \"12345678\"\r\n}",
+          "raw": "{\r\n\"email\": \"admin@example.com\",\r\n\"password\": \"admin12345\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -66,7 +141,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"dpi\": 1000000000001,\r\n  \"name\": \"Juan Perez\",\r\n  \"username\": \"juan123\",\r\n  \"email\": \"juan@mail.com\",\r\n  \"password\": \"12345678\",\r\n  \"address\": \"Zona 1\",\r\n  \"role_id\": 4\r\n}",
+          "raw": "{\r\n  \"dpi\": 1000000000002,\r\n  \"name\": \"Pepe Toño\",\r\n  \"username\": \"pepe123\",\r\n  \"email\": \"pepe@mail.com\",\r\n  \"password\": \"1234567.8\",\r\n  \"address\": \"Zona 1\",\r\n  \"role_id\": 4\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -252,7 +327,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"speed\": 45,\r\n  \"date\": \"2026-04-06 10:00:00\",\r\n  \"traffic_light_status\": \"GREEN\",\r\n  \"violation\": false,\r\n  \"traffic_light_id\": 1,\r\n  \"plate\": \"P123ABC\"\r\n}",
+          "raw": "{\r\n  \"speed\": 12,\r\n  \"date\": \"2026-04-06 10:00:00\",\r\n  \"traffic_light_status\": \"RED\",\r\n  \"traffic_light_id\": 1,\r\n  \"plate\": \"P125ABC\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -376,7 +451,86 @@
       "name": "list-evidence",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/evidence/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "evidence",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "claimVehicle",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoyOTk5NzEzOTIwMTAxLCJyb2xlIjoxLCJpYXQiOjE3NzU3NTA3OTksImV4cCI6MTc3NTc2NTE5OX0.TNrY9ln8-Xe7cPTSVJ_wHJgJ4arD6Jx-gWU8c6eXBcA",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"currentOwner\":\"1000000000002\",\r\n    \"plate\":\"P125ABC\",\r\n    \"newOwnerDpi\":\"2999713920101\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/extras/claim",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "extras",
+            "claim"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "desactivate-user-by-death",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoyOTk5NzEzOTIwMTAxLCJyb2xlIjoxLCJpYXQiOjE3NzU3NTA3OTksImV4cCI6MTc3NTc2NTE5OX0.TNrY9ln8-Xe7cPTSVJ_wHJgJ4arD6Jx-gWU8c6eXBcA",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/extras/1000000000001",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "extras",
+            "1000000000001"
+          ]
+        }
       },
       "response": []
     }

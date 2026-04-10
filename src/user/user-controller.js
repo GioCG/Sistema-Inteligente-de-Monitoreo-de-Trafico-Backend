@@ -4,8 +4,7 @@ import {
     getUsers,
     getUserByDPI,
     updateUserDB,
-    updatePasswordDB,
-    deleteUserDB
+    updatePasswordDB
 } from './user-model.js';
 
 import bcrypt from 'bcrypt';
@@ -108,22 +107,3 @@ export const updatePassword = async (req, res) => {
     }
 };
 
-export const deleteUser = async (req, res) => {
-    try {
-        const { dpi } = req.params;
-
-        await deleteUserDB(dpi);
-
-        res.status(200).json({
-            estado: true,
-            msg: "Usuario desactivado"
-        });
-
-    } catch (error) {
-        res.status(500).json({
-            estado: false,
-            msg: "Error al eliminar usuario",
-            error: error.message
-        });
-    }
-};

@@ -2,27 +2,22 @@
 
 export const hasRole = (...rolesPermitidos) => {
     return (req, res, next) => {
-
         if (!req.user) {
-            return res.status(500).json({
-                success: false,
-                msg: "Se quiere verificar rol sin validar token primero"
-            });
+            return res.status(500).json({ success: false, msg: "Token no validado" });
         }
+        const roleValue = req.user.role_name || req.user.role; 
 
-        const { role } = req.user;
-
-        if (!rolesPermitidos.includes(role)) {
+        if (!rolesPermitidos.includes(roleValue)) {
             return res.status(403).json({
                 success: false,
-                msg: `El servicio requiere uno de estos roles: ${rolesPermitidos}`
+                msg: `Tu rol (${roleValue}) no tiene permiso. Requerido: ${rolesPermitidos}`
             });
         }
-
         next();
     };
 };
 
-export const isAdmin = hasRole("ADMIN_ROLE");
-export const isOperator = hasRole("OPERATOR_ROLE", "ADMIN_ROLE");
-export const isSecurity = hasRole("SECURITY_ROLE", "ADMIN_ROLE");
+
+export const isAdmin = hasRole(1); 
+export const isOperator = hasRole(1, 2); 
+export const isSecurity = hasRole(1, 3); 

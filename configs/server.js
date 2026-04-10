@@ -14,7 +14,7 @@ import vehicleRoutes from '../src/vehicle/vehicle-routes.js';
 import trafficLightRoutes from '../src/trafficLight/trafficlight-routes.js';
 import eventRoutes from '../src/event/event-routes.js';
 import evidenceRoutes from '../src/evidence/evidence-routes.js';
-
+import extraRoutes from '../src/extra/extra-routes.js'
 
 // ==================== MIDDLEWARES ====================
 const middlewares = (app) => {
@@ -38,6 +38,7 @@ const routes = (app) => {
     app.use("/traffic-control/v1/traffic-lights", trafficLightRoutes);
     app.use("/traffic-control/v1/events", eventRoutes);
     app.use("/traffic-control/v1/evidence", evidenceRoutes);
+    app.use("/traffic-control/v1/extras", extraRoutes);
 
 };
 

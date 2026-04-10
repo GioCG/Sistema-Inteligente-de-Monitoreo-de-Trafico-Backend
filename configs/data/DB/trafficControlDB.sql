@@ -37,7 +37,7 @@ CREATE TABLE vehicles (
     plate VARCHAR(10) PRIMARY KEY,
     type VARCHAR(20) NOT NULL,
     color VARCHAR(20) NOT NULL,
-    dpi_user BIGINT,
+    dpi_user BIGINT NULL,
     CONSTRAINT fk_user_vehicle
     FOREIGN KEY (dpi_user)
     REFERENCES users(dpi)

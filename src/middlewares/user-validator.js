@@ -105,6 +105,10 @@ export const registerUserValidator = [
 
 export const updateUserValidator = [
     param("dpi").custom(existeUsuarioByDPI),
+    body("username").isLength({ min: 4 }),
+    body("email").isEmail(),
+    body("email").custom(existenteEmail), 
+    body("address").notEmpty(),
     validarCampos
 ];
 

@@ -18,3 +18,12 @@ export const getVehicles = async () => {
 export const deleteVehicle = async (plate) => {
     await db().query("DELETE FROM vehicles WHERE plate = ?", [plate]);
 };
+
+export const getVehicleByPlate = async (plate) => {
+    const [rows] = await db().query(
+        "SELECT * FROM vehicles WHERE plate = ?",
+        [plate]
+    );
+    return rows.length > 0 ? rows[0] : null;
+};
+
