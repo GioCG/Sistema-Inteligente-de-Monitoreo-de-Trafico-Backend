@@ -8,6 +8,7 @@ import morgan from 'morgan';
 import limiter from '../src/middlewares/validar-cant-peticiones.js';
 import { dbConnection, db } from './mysql.js';
 
+import requestRoutes from '../src/request/request-routes.js';
 import authRoutes from '../src/auth/auth-routes.js';
 import userRoutes from '../src/user/user-routes.js';
 import vehicleRoutes from '../src/vehicle/vehicle-routes.js';
@@ -39,7 +40,7 @@ const routes = (app) => {
     app.use("/traffic-control/v1/events", eventRoutes);
     app.use("/traffic-control/v1/evidence", evidenceRoutes);
     app.use("/traffic-control/v1/extras", extraRoutes);
-
+    app.use("/traffic-control/v1/requests", requestRoutes);
 };
 
 

@@ -231,6 +231,40 @@
       "response": []
     },
     {
+      "name": "list-vehicle-Ciudadano",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"plate\": \"P123ABC\",\r\n  \"type\": \"Car\",\r\n  \"color\": \"Red\",\r\n  \"dpi_user\": 1000000000001\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/vehicles/myvehicle",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "vehicles",
+            "myvehicle"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "delete-vehicle",
       "request": {
         "method": "DELETE",
@@ -606,6 +640,174 @@
             "v1",
             "extras",
             "1000000000001"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list-requests-Operator",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoyOTk5NzEzOTIwMTAxLCJyb2xlIjoxLCJpYXQiOjE3NzU4NzA3NTQsImV4cCI6MTc3NTg4NTE1NH0.ydLJsAlm-Lig7IF78TyKBymKaVvzr4_-tDy7-N6lyCI",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/requests/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "requests",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "resolve-request",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoyOTk5NzEzOTIwMTAxLCJyb2xlIjoxLCJpYXQiOjE3NzU4NzA3NTQsImV4cCI6MTc3NTg4NTE1NH0.ydLJsAlm-Lig7IF78TyKBymKaVvzr4_-tDy7-N6lyCI",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"action\":\"APPROVED\",\r\n    \"reason\":\"porque ta chido\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/requests/1/resolve",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "requests",
+            "1",
+            "resolve"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list-requests-Ciudadano",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoxMDAwMDAwMDAwMDAyLCJyb2xlIjo0LCJpYXQiOjE3NzU4NzA4NjksImV4cCI6MTc3NTg4NTI2OX0.Wm0TCZUpSiamBJ0KDDFry6hh9274rOB9ZX35mOa5Z24",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/requests/my-requests",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "requests",
+            "my-requests"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "claim-vehicle-requests-Ciudadano",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoxMDAwMDAwMDAwMDAyLCJyb2xlIjo0LCJpYXQiOjE3NzU4NzA4NjksImV4cCI6MTc3NTg4NTI2OX0.Wm0TCZUpSiamBJ0KDDFry6hh9274rOB9ZX35mOa5Z24",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"plate\":\"P241ABC\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/requests/claim-vehicle",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "requests",
+            "claim-vehicle"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "register-vehicle-requests-Ciudadano Copy",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoxMDAwMDAwMDAwMDAyLCJyb2xlIjo0LCJpYXQiOjE3NzU4NzA4NjksImV4cCI6MTc3NTg4NTI2OX0.Wm0TCZUpSiamBJ0KDDFry6hh9274rOB9ZX35mOa5Z24",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"plate\": \"P542ABC\",\r\n  \"type\": \"bus\",\r\n  \"color\": \"verde\",\r\n  \"dpi_user\": 1000000000002,\r\n  \"reason\":\"lo acabo de comprar\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/requests/register-vehicle",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "requests",
+            "register-vehicle"
           ]
         }
       },

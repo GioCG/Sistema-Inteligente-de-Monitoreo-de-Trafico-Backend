@@ -1,3 +1,6 @@
+import { validarCampos } from "../middlewares/validar-campos.js";
+import { param, body } from "express-validator";
+
 export const vehicleValidator = [
     body("plate", "Plate is required")
         .not().isEmpty()

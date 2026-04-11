@@ -1,3 +1,4 @@
+drop database if exists trafficcontroldb;
 CREATE DATABASE IF NOT EXISTS trafficControlDB;
 USE trafficControlDB;
 
@@ -69,6 +70,23 @@ CREATE TABLE evidence (
     CONSTRAINT fk_event_evidence
     FOREIGN KEY (event_id)
     REFERENCES events(id)
+);
+
+CREATE TABLE requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    type ENUM('REGISTER_VEHICLE', 'CLAIM_VEHICLE') NOT NULL,
+    status ENUM('PENDING', 'APPROVED', 'REJECTED') DEFAULT 'PENDING',
+    requested_by BIGINT NOT NULL,        -- DPI del ciudadano
+    reviewed_by BIGINT NULL,             -- DPI del operador/admin que resolvió
+    payload JSON NOT NULL,               -- datos de la solicitud
+    reason VARCHAR(255) NULL,            -- razón de rechazo (opcional)
+    created_at DATETIME DEFAULT NOW(),
+    updated_at DATETIME DEFAULT NOW() ON UPDATE NOW(),
+
+    CONSTRAINT fk_request_user
+        FOREIGN KEY (requested_by) REFERENCES users(dpi),
+    CONSTRAINT fk_reviewer
+        FOREIGN KEY (reviewed_by) REFERENCES users(dpi)
 );
 
 CREATE INDEX idx_email ON users(email);

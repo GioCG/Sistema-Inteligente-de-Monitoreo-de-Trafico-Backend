@@ -33,7 +33,7 @@ export const listVehicles = async (req, res) => {
 
 export const getVehicle = async (req, res) => {
     try {
-        const vehicle = await getVehicleByPlate(req.params.plate);
+        const vehicle = await getVehicleByPlate(req.params.user_id);
 
         res.status(200).json({
             estado: true,
