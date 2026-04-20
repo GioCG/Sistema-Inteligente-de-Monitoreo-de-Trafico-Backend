@@ -1,25 +1,59 @@
 import {
     createEvent,
     getEvents,
-    getEventsFull,
     getEventsByUserDB
 } from './event-model.js';
+
+import {
+    createFineDB
+}from '../fine/fines-model.js'
 
 export const createEvents = async (req, res) => {
     try {
         const { speed, traffic_light_status } = req.body;
-        
+
         let isViolation = false;
+
         if (speed > 80 || traffic_light_status === 'RED') {
             isViolation = true;
         }
 
-        const eventData = { ...req.body, violation: isViolation };
+        const eventData = {
+            ...req.body,
+            violation: isViolation
+        };
+
         const result = await createEvent(eventData);
 
-        res.status(201).json({ estado: true, violation_detected: isViolation, result });
-    } catch (error) { 
-        res.status(500).json({ estado: false, error: error.message });
+        if (!result || !result.insertId) {
+            return res.status(500).json({
+                estado: false,
+                message: "Error creando evento"
+            });
+        }
+
+        if (isViolation) {
+
+            const fineAmount = speed > 80 ? 500 : 200;
+
+            await createFineDB({
+                amount: fineAmount,
+                description: "Infracción detectada",
+                event_id: result.insertId
+            });
+        }
+
+        return res.status(201).json({
+            estado: true,
+            violation_detected: isViolation,
+            event_id: result.insertId
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            estado: false,
+            message: error.message
+        });
     }
 };
 

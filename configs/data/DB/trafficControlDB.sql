@@ -89,6 +89,18 @@ CREATE TABLE requests (
         FOREIGN KEY (reviewed_by) REFERENCES users(dpi)
 );
 
+CREATE TABLE fines (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    amount DECIMAL(10,2) NOT NULL,
+    description VARCHAR(100),
+    event_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_event_fine
+    FOREIGN KEY (event_id)
+    REFERENCES events(id)
+);
+
 CREATE INDEX idx_email ON users(email);
 CREATE INDEX idx_plate ON vehicles(plate);
 CREATE INDEX idx_event_date ON events(date);

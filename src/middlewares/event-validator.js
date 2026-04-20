@@ -16,10 +16,6 @@ export const eventValidator = [
         .notEmpty()
         .withMessage("La placa es obligatoria"),
 
-    body("violation")
-        .isBoolean()
-        .withMessage("Violation debe ser booleano"),
-
     validarCampos
 ];
 

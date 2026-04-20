@@ -11,10 +11,13 @@ export const createEvent = async (data) => {
         plate
     } = data;
 
-    await db().query(
-        "CALL sp_createEvent(?, ?, ?, ?, ?, ?)",
-        [speed, date, traffic_light_status, violation, traffic_light_id, plate]
+    const [result] = await db().query(
+        `INSERT INTO events 
+        (speed, date, traffic_light_status, violation, traffic_light_id, plate)
+        VALUES (?, NOW(), ?, ?, ?, ?)`,
+        [speed, traffic_light_status, violation, traffic_light_id, plate]
     );
+    return result;
 };
 
 export const getEvents = async () => {
