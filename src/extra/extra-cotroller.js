@@ -16,7 +16,6 @@ export const desactivateByDeath = async (req, res) => {
 
         const user = await getUserByDPI(dpi);
         
-        // 1. Validar si el usuario existe
         if (!user) {
             return res.status(404).json({ 
                 estado: false, 
@@ -24,8 +23,7 @@ export const desactivateByDeath = async (req, res) => {
             });
         }
 
-        // 2. Validar si ya está desactivado
-        // Si el estado es 0, false o 'inactivo' (depende de tu DB)
+
         if (user.estate == false || user.estate == 0) {
             return res.status(400).json({
                 estado: false,
@@ -33,7 +31,6 @@ export const desactivateByDeath = async (req, res) => {
             });
         }
 
-        // 3. Ejecutar el proceso solo si estaba activo
         await processUserDeathDB(dpi);
 
         res.status(200).json({
@@ -51,16 +48,13 @@ export const claimVehicle = async (req, res) => {
     try {
         const { plate, newOwnerDpi } = req.body;
 
-        // 1. Buscamos el vehículo para saber quién es el dueño actual
         const vehicle = await getVehicleByPlate(plate);
         if (!vehicle) {
             return res.status(404).json({ estado: false, msg: "Vehículo no encontrado" });
         }
 
-        // Definimos claramente el dueño actual que viene de la DB
         const currentOwnerFromDB = vehicle.dpi_user;
 
-        // 2. Capa de Seguridad: Comparación normalizada
         if (String(currentOwnerFromDB) === String(newOwnerDpi)) {
             return res.status(400).json({
                 estado: false,
@@ -68,7 +62,6 @@ export const claimVehicle = async (req, res) => {
             });
         }
 
-        // 3. Validar que el nuevo dueño exista y esté activo
         const newOwner = await getUserByDPI(newOwnerDpi);
         if (!newOwner || newOwner.estado == false) {
             return res.status(400).json({ 
@@ -77,11 +70,9 @@ export const claimVehicle = async (req, res) => {
             });
         }
 
-        // 4. Ejecutar la transferencia
         const success = await transferVehicleDB(plate, newOwnerDpi);
 
         if (success) {
-            //  USAMOS LAS VARIABLES QUE SÍ EXISTEN PARA LA RESPUESTA
             return res.status(200).json({
                 estado: true,
                 msg: "Transferencia exitosa",
@@ -98,6 +89,29 @@ export const claimVehicle = async (req, res) => {
         return res.status(500).json({ 
             estado: false, 
             error: error.message 
+        });
+    }
+};
+
+export const updateUserRole = async (req, res) => {
+    try {
+        const { dpi } = req.params;
+        const { role_id } = req.body;
+
+        await db().query(
+            "UPDATE users SET role_id = ? WHERE dpi = ?",
+            [role_id, dpi]
+        );
+
+        return res.json({
+            estado: true,
+            message: "Rol actualizado correctamente"
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            estado: false,
+            message: "Error actualizando rol"
         });
     }
 };

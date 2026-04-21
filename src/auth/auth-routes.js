@@ -5,10 +5,13 @@ import {
     loginValidator,
     registerUserValidator
 } from "../middlewares/user-validator.js";
-
+import{
+    validarJWT
+}from "../middlewares/jwt-validator.js"
 import {
     login,
-    registerUser
+    registerUser,
+    logout
 } from "./auth-controller.js";
 
 import { deleteFileOnError } from "../middlewares/delete-file-on-error.js";
@@ -29,6 +32,13 @@ router.post(
         registerUserValidator
     ],
     registerUser
+);
+
+router.post("/logout", 
+    [
+        validarJWT
+    ], 
+    logout
 );
 
 export default router;

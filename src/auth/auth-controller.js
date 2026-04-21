@@ -85,3 +85,17 @@ export const registerUser = async (req, res) => {
         });
     }
 };
+
+export const logout = async (req, res) => {
+    try {
+        return res.status(200).json({
+            estado: true,
+            message: "Logout exitoso"
+        });
+    } catch (error) {
+        return res.status(500).json({
+            estado: false,
+            message: "Error en logout"
+        });
+    }
+};
