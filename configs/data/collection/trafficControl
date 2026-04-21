@@ -1,0 +1,817 @@
+{
+  "info": {
+    "_postman_id": "520a65bc-9123-4e06-b8a1-4acd2c5bc6f0",
+    "name": "semaforo",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "42618807"
+  },
+  "item": [
+    {
+      "name": "list-user",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/users/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "users",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update-user-password",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoyOTk5NzEzOTIwMTAxLCJyb2xlIjoxLCJpYXQiOjE3NzU3MDA4OTcsImV4cCI6MTc3NTcxNTI5N30.ORMaC20QaReNYt6L4OU4qfkJZnjBYWQSbPL2r1mPgFI",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"currentPassword\": \"admin12345\",\r\n    \"newPassword\":\"jjVuGB8u\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/users/password/2999713920101",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "users",
+            "password",
+            "2999713920101"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update-user-data",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoyOTk5NzEzOTIwMTAxLCJyb2xlIjoxLCJpYXQiOjE3NzU3MDA4OTcsImV4cCI6MTc3NTcxNTI5N30.ORMaC20QaReNYt6L4OU4qfkJZnjBYWQSbPL2r1mPgFI",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"admin12345\",\r\n    \"email\":\"admin@example.com\",\r\n    \"address\":\"system\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/users/2999713920101",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "users",
+            "2999713920101"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"email\": \"admin@example.com\",\r\n\"password\": \"admin12345\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"dpi\": 1000000000002,\r\n  \"name\": \"Pepe Toño\",\r\n  \"username\": \"pepe123\",\r\n  \"email\": \"pepe@mail.com\",\r\n  \"password\": \"1234567.8\",\r\n  \"address\": \"Zona 1\",\r\n  \"role_id\": 4\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createvehicle",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"plate\": \"P785ABC\",\r\n  \"type\": \"car\",\r\n  \"color\": \"red\",\r\n  \"dpi_user\": 1000000000002\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/vehicles/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "vehicles",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list-vehicle",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"plate\": \"P123ABC\",\r\n  \"type\": \"Car\",\r\n  \"color\": \"Red\",\r\n  \"dpi_user\": 1000000000001\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/vehicles/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "vehicles",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list-vehicle-Ciudadano",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"plate\": \"P123ABC\",\r\n  \"type\": \"Car\",\r\n  \"color\": \"Red\",\r\n  \"dpi_user\": 1000000000001\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/vehicles/myvehicle",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "vehicles",
+            "myvehicle"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete-vehicle",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"type\": \"Truck\",\r\n  \"color\": \"Blue\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/vehicles/:P123ABC",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "vehicles",
+            ":P123ABC"
+          ],
+          "variable": [
+            {
+              "key": "P123ABC",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create-traffic-light",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"location\": \"Zona 2\",\r\n    \"status\": \"Activo\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/traffic-lights/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "traffic-lights",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list-traffic-light",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/traffic-lights/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "traffic-lights",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create-events",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"speed\": 95,\r\n  \"date\": \"2026-04-06 10:00:00\",\r\n  \"traffic_light_status\": \"green\",\r\n  \"traffic_light_id\": 1,\r\n  \"plate\": \"P785ABC\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/events/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "events",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list-events",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"speed\": 45,\r\n  \"date\": \"2026-04-06 10:00:00\",\r\n  \"traffic_light_status\": \"GREEN\",\r\n  \"violation\": false,\r\n  \"traffic_light_id\": 1,\r\n  \"plate\": \"P123ABC\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/events",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "events"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list-events-by-user",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"speed\": 45,\r\n  \"date\": \"2026-04-06 10:00:00\",\r\n  \"traffic_light_status\": \"GREEN\",\r\n  \"violation\": false,\r\n  \"traffic_light_id\": 1,\r\n  \"plate\": \"P123ABC\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/events/1000000000002",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "events",
+            "1000000000002"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create-evidence 2 o mas imagenes",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "images",
+              "type": "file",
+              "uuid": "5d3bd854-31e2-491c-b9b5-1487c35bcfac",
+              "src": "/C:/Users/Gio/Pictures/Saved Pictures/images.jpg"
+            },
+            {
+              "key": "event_id",
+              "value": "2",
+              "type": "text",
+              "uuid": "86999e25-c14a-492d-a59b-43dc30fc7296"
+            },
+            {
+              "key": "images",
+              "type": "file",
+              "uuid": "5d3bd854-31e2-491c-b9b5-1487c35bcfac",
+              "src": "/C:/Users/Gio/Pictures/Saved Pictures/MV5BNTI5OGVkYWUtMDQzOS00ZDMzLWJjNzQtNThjZWRhZmY2ODVkXkEyXkFqcGc@._V1_QL75_UY281_CR2,0,500,281_.jpg"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/evidence/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "evidence",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create-evidence 1 imagen",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "images",
+              "type": "file",
+              "uuid": "5d3bd854-31e2-491c-b9b5-1487c35bcfac",
+              "src": "postman-cloud:///1f1350dd-0520-4840-840e-77728182c94e"
+            },
+            {
+              "key": "event_id",
+              "value": "2",
+              "type": "text",
+              "uuid": "86999e25-c14a-492d-a59b-43dc30fc7296"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/evidence/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "evidence",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list-evidence",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/evidence/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "evidence",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list-evidence-by-events",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/evidence/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "evidence",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "claimVehicle",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoyOTk5NzEzOTIwMTAxLCJyb2xlIjoxLCJpYXQiOjE3NzU3NTA3OTksImV4cCI6MTc3NTc2NTE5OX0.TNrY9ln8-Xe7cPTSVJ_wHJgJ4arD6Jx-gWU8c6eXBcA",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"currentOwner\":\"1000000000002\",\r\n    \"plate\":\"P125ABC\",\r\n    \"newOwnerDpi\":\"2999713920101\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/extras/claim",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "extras",
+            "claim"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "desactivate-user-by-death",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoyOTk5NzEzOTIwMTAxLCJyb2xlIjoxLCJpYXQiOjE3NzU3NTA3OTksImV4cCI6MTc3NTc2NTE5OX0.TNrY9ln8-Xe7cPTSVJ_wHJgJ4arD6Jx-gWU8c6eXBcA",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/extras/1000000000001",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "extras",
+            "1000000000001"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list-requests-Operator",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoyOTk5NzEzOTIwMTAxLCJyb2xlIjoxLCJpYXQiOjE3NzU4NzA3NTQsImV4cCI6MTc3NTg4NTE1NH0.ydLJsAlm-Lig7IF78TyKBymKaVvzr4_-tDy7-N6lyCI",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/requests/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "requests",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "resolve-request",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoyOTk5NzEzOTIwMTAxLCJyb2xlIjoxLCJpYXQiOjE3NzU4NzA3NTQsImV4cCI6MTc3NTg4NTE1NH0.ydLJsAlm-Lig7IF78TyKBymKaVvzr4_-tDy7-N6lyCI",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"action\":\"APPROVED\",\r\n    \"reason\":\"porque ta chido\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/requests/1/resolve",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "requests",
+            "1",
+            "resolve"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list-requests-Ciudadano",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoxMDAwMDAwMDAwMDAyLCJyb2xlIjo0LCJpYXQiOjE3NzU4NzA4NjksImV4cCI6MTc3NTg4NTI2OX0.Wm0TCZUpSiamBJ0KDDFry6hh9274rOB9ZX35mOa5Z24",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/requests/my-requests",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "requests",
+            "my-requests"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "claim-vehicle-requests-Ciudadano",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoxMDAwMDAwMDAwMDAyLCJyb2xlIjo0LCJpYXQiOjE3NzU4NzA4NjksImV4cCI6MTc3NTg4NTI2OX0.Wm0TCZUpSiamBJ0KDDFry6hh9274rOB9ZX35mOa5Z24",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"plate\":\"P241ABC\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/requests/claim-vehicle",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "requests",
+            "claim-vehicle"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "register-vehicle-requests-Ciudadano Copy",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1ZHBpIjoxMDAwMDAwMDAwMDAyLCJyb2xlIjo0LCJpYXQiOjE3NzU4NzA4NjksImV4cCI6MTc3NTg4NTI2OX0.Wm0TCZUpSiamBJ0KDDFry6hh9274rOB9ZX35mOa5Z24",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"plate\": \"P542ABC\",\r\n  \"type\": \"bus\",\r\n  \"color\": \"verde\",\r\n  \"dpi_user\": 1000000000002,\r\n  \"reason\":\"lo acabo de comprar\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/traffic-control/v1/requests/register-vehicle",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "traffic-control",
+            "v1",
+            "requests",
+            "register-vehicle"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
