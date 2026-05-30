@@ -1,4 +1,5 @@
 'use strict';
+
 import { db } from '../../configs/mysql.js';
 
 export const findUserByEmailOrUsername = async (email, username) => {
@@ -8,8 +9,7 @@ export const findUserByEmailOrUsername = async (email, username) => {
          INNER JOIN roles r ON u.role_id = r.id
          WHERE u.email = ? OR u.username = ?
          LIMIT 1`,
-        [email, username]
+        [email || '', username || '']
     );
-
     return rows[0];
 };

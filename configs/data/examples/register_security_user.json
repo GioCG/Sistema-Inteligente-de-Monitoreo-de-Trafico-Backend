@@ -1,0 +1,9 @@
+{
+  "dpi": 1000000000002,
+  "name": "Unidad de Seguridad Vial ESP32-CAM",
+  "username": "seguridad_cam",
+  "email": "seguridad.cam@example.com",
+  "password": "SeguridadCam12345",
+  "address": "Puesto de control vial UMG",
+  "role_id": 3
+}
