@@ -19,5 +19,9 @@ export const hasRole = (...rolesPermitidos) => {
 
 
 export const isAdmin = hasRole(1); 
-export const isOperator = hasRole(1, 2); 
-export const isSecurity = hasRole(1, 3); 
+export const isOperator = hasRole(1, 2, 5); 
+export const isSecurity = hasRole(1, 3, 5);
+export const isSystem = hasRole(1, 5);
+export const isSecurityOrOperator = hasRole(1, 2, 3, 5);
+export const isOperatorOnly = hasRole(2);
+export const isSystemOnly = hasRole(5); 

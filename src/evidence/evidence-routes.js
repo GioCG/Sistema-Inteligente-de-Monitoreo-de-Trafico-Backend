@@ -1,31 +1,38 @@
 import { Router } from "express";
 import { uploadImage } from "../middlewares/upload.js";
-import { listEvidence, createEvidences, getEvidenceByEventController } from "./evidence-controller.js";
+import { listEvidence, createEvidences, getEvidenceByEventController, deleteEvidenceController } from "./evidence-controller.js";
 import { validarJWT } from "../middlewares/jwt-validator.js";
-import { isSecurity } from "../middlewares/role-validator.js";
-import {evidenceValidator} from "../middlewares/evidence.js"
+import { isSecurity, isSecurityOrOperator, isOperator } from "../middlewares/role-validator.js";
+import { evidenceCreateValidator, evidenceParamValidator, evidenceDeleteValidator } from "../middlewares/evidence.js";
 
 const router = Router();
 
 router.get("/",
     validarJWT,
-    isSecurity,
+    isSecurityOrOperator,
     listEvidence
 );
 
 router.get("/:event_id",
     validarJWT,
-    isSecurity,
-    evidenceValidator,
+    isSecurityOrOperator,
+    evidenceParamValidator,
     getEvidenceByEventController
 );
 
 router.post("/",
     validarJWT,
-    isSecurity,
+    isSecurityOrOperator,
     uploadImage.array("images", 3),
-    evidenceValidator,
+    evidenceCreateValidator,
     createEvidences
+);
+
+router.delete("/:id",
+    validarJWT,
+    isOperator,
+    evidenceDeleteValidator,
+    deleteEvidenceController
 );
 
 export default router;

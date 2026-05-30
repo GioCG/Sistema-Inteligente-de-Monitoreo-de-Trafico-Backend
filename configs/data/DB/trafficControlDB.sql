@@ -28,6 +28,9 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     address VARCHAR(40) NOT NULL,
     estate BOOLEAN DEFAULT TRUE,
+    reset_token VARCHAR(128) NULL,
+    reset_token_expires DATETIME NULL,
+    google_sub VARCHAR(128) NULL,
     role_id INT,
     CONSTRAINT fk_role_user
     FOREIGN KEY (role_id)
@@ -52,6 +55,7 @@ CREATE TABLE events (
     violation BOOLEAN NOT NULL,
     traffic_light_id INT,
     plate VARCHAR(10),
+    detected_plate VARCHAR(10) NULL,
 
     CONSTRAINT fk_traffic_light
     FOREIGN KEY (traffic_light_id)
@@ -92,13 +96,30 @@ CREATE TABLE requests (
 CREATE TABLE fines (
     id INT AUTO_INCREMENT PRIMARY KEY,
     amount DECIMAL(10,2) NOT NULL,
-    description VARCHAR(100),
+    description TEXT,
     event_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT fk_event_fine
     FOREIGN KEY (event_id)
     REFERENCES events(id)
+);
+
+CREATE TABLE fine_history (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fine_id INT,
+    amount DECIMAL(10,2) NOT NULL,
+    description TEXT,
+    event_id INT,
+    plate VARCHAR(10),
+    owner_dpi BIGINT,
+    evidence_path VARCHAR(255),
+    payment_reference VARCHAR(80),
+    payment_method VARCHAR(60),
+    payer_name VARCHAR(80),
+    card_last4 VARCHAR(4),
+    paid_at DATETIME,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE INDEX idx_email ON users(email);
@@ -125,7 +146,6 @@ BEGIN
 END$$
 DELIMITER ;
 
-ñ
 DELIMITER $$
 CREATE PROCEDURE sp_getUserByDPI(IN p_dpi BIGINT)
 BEGIN
@@ -235,13 +255,17 @@ BEGIN
         e.speed,
         e.date,
         e.violation,
+        e.traffic_light_status,
         tl.location,
-        v.plate,
+        e.plate,
+        e.detected_plate,
+        COALESCE(e.plate, e.detected_plate) AS plate_visible,
         u.name AS owner
     FROM events e
-    INNER JOIN traffic_light tl ON e.traffic_light_id = tl.id
-    INNER JOIN vehicles v ON e.plate = v.plate
-    INNER JOIN users u ON v.dpi_user = u.dpi;
+    LEFT JOIN traffic_light tl ON e.traffic_light_id = tl.id
+    LEFT JOIN vehicles v ON e.plate = v.plate
+    LEFT JOIN users u ON v.dpi_user = u.dpi
+    ORDER BY e.date DESC;
 END$$
 DELIMITER ;
 
@@ -254,9 +278,11 @@ BEGIN
         ev.id,
         ev.image_path,
         e.date,
-        v.plate
+        e.plate,
+        e.detected_plate,
+        COALESCE(e.plate, e.detected_plate) AS plate_visible
     FROM evidence ev
     INNER JOIN events e ON ev.event_id = e.id
-    INNER JOIN vehicles v ON e.plate = v.plate;
+    ORDER BY e.date DESC;
 END$$
 DELIMITER ;
